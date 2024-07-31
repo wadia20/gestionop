@@ -17,7 +17,7 @@
 <div class="container mt-0">
     <div class="row breadcrumb-bar">
         <div class="col-md-6">
-            <h3 class="block-title">Add client</h3>
+            <h3 class="block-title">Ajouter un contact</h3>
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -26,8 +26,8 @@
                         <span class="ti-home"></span>
                     </a>
                 </li>
-                <li class="breadcrumb-item">clients</li>
-                <li class="breadcrumb-item active">Add client</li>
+                <li class="breadcrumb-item">contacts</li>
+                <li class="breadcrumb-item active">ajouter contact</li>
             </ol>
         </div>
     </div>
@@ -42,26 +42,26 @@
     <!-- Widget Item -->
     <div class="col-md-12">
         <div class="widget-area-2 proclinic-box-shadow">
-            <h3 class="widget-title">Add client</h3>
+            <h3 class="widget-title">Ajouter contact</h3>
             <form method="POST" action="{% url 'employe:add_client' %}">
 
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="client-id">Client ID</label>
+                        <label for="client-id">Contact CIN</label>
                         <input type="text" class="form-control" placeholder="Client ID" id="client-id" name="client_id" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="client-name">Client Name</label>
+                        <label for="client-name">NOM du Contact</label>
                         <input type="text" class="form-control" placeholder="Client Name" id="client-name" name="client_name" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="dob">Date Of Birth</label>
+                        <label for="dob">Date de naissance</label>
                         <input type="date" placeholder="Date of Birth" class="form-control" id="dob" name="client_birth" required>
                     </div>
                    
                     <div class="form-group col-md-6">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Num. T</label>
                         <input type="text" placeholder="Phone" class="form-control" id="phone" name="client_phone" required>
                     </div>
                     <div class="form-group col-md-6">
@@ -71,13 +71,13 @@
                     <div class="form-group col-md-6">
                         <label for="gender">Gender</label>
                         <select class="form-control" id="gender" name="client_gender" required>
-                            <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="">Choisir Sexe</option>
+                            <option value="Male">Homme</option>
+                            <option value="Female">Femme</option>
                         </select>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="address">Address</label>
+                        <label for="address">Addresse</label>
                         <textarea placeholder="Address" class="form-control" id="address" rows="3" name="client_Address" required></textarea>
                     </div>
                     

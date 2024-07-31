@@ -4,7 +4,7 @@
 <div class="container mt-0">
     <div class="row breadcrumb-bar">
         <div class="col-md-6">
-            <h3 class="block-title">Editer un client</h3>
+            <h3 class="block-title">Editer un contact</h3>
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -13,8 +13,8 @@
                         <span class="ti-home"></span>
                     </a>
                 </li>
-                <li class="breadcrumb-item">Clients</li>
-                <li class="breadcrumb-item active">Editer un client</li>
+                <li class="breadcrumb-item">Contacts</li>
+                <li class="breadcrumb-item active">Editer un contact</li>
             </ol>
         </div>
     </div>
@@ -41,16 +41,16 @@
             <div class="row">        
             <div class="col-md-12">
                 <div class="widget-area-2 proclinic-box-shadow">
-                    <h3 class="widget-title">Editer le client</h3>
+                    <h3 class="widget-title">Editer le contact</h3>
                     <form method="POST" action="{% url 'employe:edit_client_with_id' client.client_id %}" >
                         {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="client-id">CIN du client </label>
+                                <label for="client-id">CIN du contact </label>
                                 <input type="text" class="form-control" placeholder="CIN" id="client-id" name="client_id" value="{{ client.client_id }}" readonly>
                             </div>                       
                             <div class="form-group col-md-6">
-                                <label for="clientname">Nom du client</label>
+                                <label for="clientname">Nom du contact</label>
                                 <input type="text" class="form-control" id="client_name" name="client_Name" value="{{ client.client_Name }}">
                             </div>
                             <div class="form-group col-md-6">
@@ -67,10 +67,10 @@
                                 <input type="email" placeholder="Email" class="form-control" id="Email" name="Email" value="{{ client.Email }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="gender">Gender</label>
+                                <label for="gender">Sexe</label>
                                 <select class="form-control" id="gender" name="Gender">
-                                    <option value="Male"{% if client.Gender == "Male" %}selected{% endif %}>Male</option>
-                                    <option value="Female"{% if client.Gender == "Female" %}selected{% endif %}>Female</option>
+                                    <option value="Male"{% if client.Gender == "Male" %}selected{% endif %}>Homme</option>
+                                    <option value="Female"{% if client.Gender == "Female" %}selected{% endif %}>Femme</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-12">

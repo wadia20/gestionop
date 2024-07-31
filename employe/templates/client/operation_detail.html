@@ -1,9 +1,10 @@
 <!-- operation_detail.html -->
 <div class="widget-area-2 proclinic-box-shadow">
-    <h3 class="widget-title">Details de l'operation</h3>
-    <p><strong>CIN du client:</strong> {{ operation.client_id }}</p>
+    <h3 class="widget-title">Detailes de l'operation</h3>
+    <p><strong>CIN du contact:</strong> {{ operation.client_id }}</p>
     <p><strong>Nom de l'Operation:</strong> {{ operation.operation }}</p>
     <p><strong>Date de l'Operation:</strong> {{ operation.operation_date }}</p>
+    <label><strong>observation:</strong></label>
     <textarea rows="10" cols="50" readonly>{{ operation.observation }}</textarea>
     <p><strong>Fichier Joint:</strong>
         {% if operation.piece_jointe %}
