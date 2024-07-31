@@ -7,7 +7,8 @@ class Employee(models.Model):
     profile_picture = models.ImageField(blank=True, null=True)
     is_admin = models.BooleanField(default=False)
 
-
+class type_operation(models.Model):
+    Name=models.CharField(max_length=100)
 
 
 
@@ -51,3 +52,5 @@ class CompanyInfo(models.Model):
 
     def __str__(self):
         return self.name
+
+
