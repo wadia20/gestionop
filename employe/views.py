@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .form import *
-from employe.models import Client,Operation
+from employe.models import Client,Operation,type_operation,CompanyInfo
 
 from django.views import View
 from django.template.loader import get_template
@@ -13,7 +13,9 @@ from xhtml2pdf import pisa
 
 # home page
 def home(request):
-    return render(request, "login.html")
+    company_info = CompanyInfo.objects.first()
+    print(f"Company Info: {company_info}")  # Debugging line
+    return render(request, 'login.html', {'company_info': company_info})
 
 def base(request):
     return render(request, "dashboard.html")
@@ -24,6 +26,7 @@ def logout_employe(request):
     return redirect('employe:login')
 #login page 
 def login_employe(request):
+    company_info = CompanyInfo.objects.first()
     if request.method == 'POST':
         username = request.POST.get('login')
         password = request.POST.get('pass')
@@ -34,7 +37,7 @@ def login_employe(request):
         else:
             messages.warning(request, 'something went wrong')
             return redirect('employe:login')
-    return render(request,'login.html')
+    return render(request,'login.html',{'company_info': company_info})
 
 #add client
 from django.shortcuts import render, redirect
@@ -101,8 +104,11 @@ def ADD_OPERATION(request):
             return render(request, 'client/add_operation.html', {'form': form})
     else:
         form = OperationForm()  # Ensure form is initialized for GET request
+    
+    typeoperation = type_operation.objects.all()
+    
+    return render(request, 'client/add_operation.html', {'form': form, 'typeoperation': typeoperation})
 
-    return render(request, 'client/add_operation.html', {'form': form})
 
 from django.views.generic import ListView
 #showing list of operations

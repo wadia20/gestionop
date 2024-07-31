@@ -52,9 +52,10 @@
                         <div class="form-group col-md-6">
                             <label for="operation">Operation</label>
                             <select class="form-control" id="operation" name="operation">
-                                <option value="Demande de visa">Demande de visa</option>
-                                <option value="Demande de relevé">Demande de relevé</option>
-                                <option value="Demande de certification">Demande de certification</option>
+                                {%for typeop in typeoperation%}
+                                    <option value="Demande de visa">{{typeop.Name}}</option>
+                                {%endfor%}
+                                
                                 
                             </select>
                         </div>
