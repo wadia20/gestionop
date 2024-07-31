@@ -19,6 +19,24 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .company-info {
+            text-align: right;
+            padding: 10px;
+            background-color: #f9f9f9;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .company-info div {
+            margin: 2px 0;
         }
         h1 {
             text-align: center;
@@ -54,19 +72,30 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <div>
+                <!-- Espace pour un logo éventuel ou autre contenu -->
+            </div>
+            <div class="company-info">
+                <div><strong>Nom de la Société:</strong> {{ company.name }}</div>
+                <div><strong>Nom Responsable:</strong> {{ company.responsible_person }}</div>
+                <div><strong>Email:</strong> {{ company.email }}</div>
+                <div><strong>Adresse:</strong> {{ company.address }}</div>
+            </div>
+        </div>
         <h1>Client Operation Report</h1>
         <h2>{{ client.client_Name }} ({{ client.client_id }})</h2>
-        <p><strong>Date of Birth:</strong> {{ client.Date_Of_Birth }}</p>
-        <p><strong>Phone:</strong> {{ client.Phone }}</p>
+        <p><strong>Date de Naissance:</strong> {{ client.Date_Of_Birth }}</p>
+        <p><strong>Téléphone:</strong> {{ client.Phone }}</p>
         <p><strong>Email:</strong> {{ client.Email }}</p>
-        <p><strong>Gender:</strong> {{ client.Gender }}</p>
-        <p><strong>Address:</strong> {{ client.Address }}</p>
+        <p><strong>Genre:</strong> {{ client.Gender }}</p>
+        <p><strong>Adresse:</strong> {{ client.Address }}</p>
         
-        <h2>Operations</h2>
+        <h2>Opérations</h2>
         <ul>
             {% for operation in operations %}
                 <li>
-                    <span class="operation-title">{{ operation.operation }}</span> on {{ operation.operation_date }}
+                    <span class="operation-title">{{ operation.operation }}</span> le {{ operation.operation_date }}
                 </li>
             {% endfor %}
         </ul>

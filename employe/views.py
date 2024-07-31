@@ -197,25 +197,29 @@ from django.shortcuts import get_object_or_404, HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from .models import Operation
+import os
+from django.conf import settings
 
 def Generate_pdf(request, client_id, operation_id):
     client = get_object_or_404(Client, client_id=client_id)
     operation = get_object_or_404(Operation, id=operation_id, client_id=client_id)
-    filename = request.GET.get('filename', 'default_filename.pdf')  # Retrieve filename from query string
+    company = CompanyInfo.objects.first()  # Récupère les informations de la première entreprise
 
-    template_path = 'pdf_template.html'
+    filename = request.GET.get('filename', 'default_filename.pdf')  # Récupère le nom du fichier à partir de la chaîne de requête
+
     context = {
         'client': client,
-        'operations': [operation],  # Pass only the selected operation
+        'operations': [operation],  # Passe uniquement l'opération sélectionnée
+        'company': company,  # Ajoute les informations de l'entreprise au contexte
     }
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
 
-    template = get_template(template_path)
+    template = get_template('pdf_template.html')
     html = template.render(context)
 
-    # Create PDF
+    # Crée le PDF
     pisa_status = pisa.CreatePDF(html, dest=response)
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
@@ -553,3 +557,20 @@ def operation_report(request):
             messages.error(request, "Both start and end dates are required.")
 
     return render(request, 'client/operation_report.html')
+
+
+
+
+from .models import CompanyInfo
+from .form import CompanyInfoForm
+
+def edit_company_info(request):
+    company_info = CompanyInfo.objects.first()  # Assuming there is only one instance
+    if request.method == 'POST':
+        form = CompanyInfoForm(request.POST, request.FILES, instance=company_info)
+        if form.is_valid():
+            form.save()
+            return redirect('employe:edit_company_info')  # Redirect to the homepage after saving
+    else:
+        form = CompanyInfoForm(instance=company_info)
+    return render(request, 'client/edit_company_info.html', {'form': form})

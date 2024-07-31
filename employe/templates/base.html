@@ -1,187 +1,163 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Gestion de tache</title>
-        <!-- Fav  Icon Link -->
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <!-- themify icons CSS -->
-        <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
-        <!-- Animations CSS -->
-        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-        <!-- Main CSS -->
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-        <link rel="stylesheet" href="{% static 'css/green.css' %}" id="style_theme">
-        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-        <!-- morris charts -->
-        <link rel="stylesheet" href="{% static 'charts/css/morris.css'%}">
-        <!-- jvectormap -->
-        <link rel="stylesheet" href="{% static 'css/jquery-jvectormap.css'%}">
-		
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gestion de tache</title>
+    <!-- Fav  Icon Link -->
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- themify icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <!-- Animations CSS -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/green.css' %}" id="style_theme">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- morris charts -->
+    <link rel="stylesheet" href="{% static 'charts/css/morris.css'%}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="{% static 'css/jquery-jvectormap.css'%}">
     
-        <script src="{% static 'js/modernizr.min.js'%}"></script>
-    </head>
-
+    <script src="{% static 'js/modernizr.min.js'%}"></script>
+</head>
 <body>
-
-
     <!-- Pre Loader -->
-	<div class="loading">
-		<div class="spinner">
-			<div class="double-bounce1"></div>
-			<div class="double-bounce2"></div>
-		</div>
-	</div>
-	<!--/Pre Loader -->
-
-
+    <div class="loading">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    <!--/Pre Loader -->
+    
     <!-- Color Changer -->
-	<div class="theme-settings" id="switcher">
-		<span class="theme-click">
-			<span class="ti-settings"></span>
-		</span>
-		<span class="theme-color theme-default theme-active" data-color="green"></span>
-		<span class="theme-color theme-blue" data-color="blue"></span>
-		<span class="theme-color theme-red" data-color="red"></span>
-		<span class="theme-color theme-violet" data-color="violet"></span>
-		<span class="theme-color theme-yellow" data-color="yellow"></span>
-	</div>
-	<!-- /Color Changer -->
-
+    <div class="theme-settings" id="switcher">
+        <span class="theme-click">
+            <span class="ti-settings"></span>
+        </span>
+        <span class="theme-color theme-default theme-active" data-color="green"></span>
+        <span class="theme-color theme-blue" data-color="blue"></span>
+        <span class="theme-color theme-red" data-color="red"></span>
+        <span class="theme-color theme-violet" data-color="violet"></span>
+        <span class="theme-color theme-yellow" data-color="yellow"></span>
+    </div>
+    <!-- /Color Changer -->
     
-    <div class="wrapper">		
-		<!-- Page Content -->
-		<div id="content">
-			<!-- Top Navigation -->
-			<div class="container top-brand">
-				<nav class="navbar navbar-default">			
-					<div class="navbar-header">
-						<div class="sidebar-header"> <a href="{% url 'employe:add_client' %}"><img src="{% static 'images/logo-dark.jpg'%} " class="logo" alt="logo"width="150" height="80"></a>
-						</div>
-					</div>
-					<ul class="nav justify-content-end">
-						<li class="nav-item">
-							<a class="nav-link">
-								<span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
-							</a>							
-						</li>
-						
-						
-						<li class="nav-item">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-							 aria-expanded="false">
-								<span class="ti-user"></span>
-							</a>
-							<div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
-								<a class="dropdown-item" href="{% url 'employe:profile' %}">
-									<span class="ti-user"></span> Profile</a>
-								
-								<a class="dropdown-item" href="#">
-									<span class="ti-help-alt"></span> Help</a>
-								<a class="dropdown-item" href="{% url 'employe:logoutw'%}">
-									<span class="ti-power-off"></span> Logout</a>
-							</div>
-						</li>
-					</ul>
-			
-				</nav>
-			</div>
-			<!-- /Top Navigation -->
-             <!-- Menu -->
-			<div class="container menu-nav">
-				<nav class="navbar navbar-expand-lg proclinic-bg text-white">
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="ti-menu text-white"></span>
-					</button>
-			
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav mr-auto">
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"> Dashboard</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="{% url 'employe:base' %}">Statistics</a>
-									
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"> clients</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="{% url 'employe:add_client' %}">Add client</a>
-									<a class="dropdown-item" href="{% url 'employe:client_show' %}">All clients</a>
-									<a class="dropdown-item" href="{% url 'employe:edit_client'%}">edit client</a>
-									
-								</div>
-							</li>
-							
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"><span class="ti-pencil-alt"></span> operations</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="{% url 'employe:add_operation' %}">Add operation</a>
-									<a class="dropdown-item" href="{% url 'employe:all_operation' %}">All operations</a>
-									{% comment %} <a class="dropdown-item" href="{% url 'employe:delete_operations' %}">supprimer operation</a> {% endcomment %}
-									{% comment %} <a class="dropdown-item" href="{% url 'employe:edit_operation' %}">edit operation</a> {% endcomment %}
-									
-									
-								</div>
-							</li>
-							
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-								 aria-expanded="false"> Rapports</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="{% url 'employe:client_report' %}">Rapport sur contact</a>
-									<a class="dropdown-item" href="{% url 'employe:operation_report' %}">Rapport sur operation</a>
-									
-								</div>
-							</li>
-							
-							
-							
-						</ul>
-					</div>
-				</nav>
-			</div>
-			<!-- /Menu -->
-
-			{% block content %}*
-
-
-			{% endblock %}
-
+    <div class="wrapper">       
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navigation -->
+            <div class="container top-brand">
+                <nav class="navbar navbar-default">            
+                    <div class="navbar-header">
+                        <div class="sidebar-header"> 
+                            <a href="{% url 'employe:add_client' %}">
+                                <img src="{% static 'images/logo-dark.jpg'%}" class="logo" alt="logo" width="150" height="80">
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
+                            </a>                            
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                             aria-expanded="false">
+                                <span class="ti-user"></span>
+                            </a>
+                            <div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
+                                <a class="dropdown-item" href="{% url 'employe:profile' %}">
+                                    <span class="ti-user"></span> Profile</a>
+                                    {% if user.employee.is_admin %}
+                                    <a class="dropdown-item" href="{% url 'employe:edit_company_info' %}">
+                                        <span class="ti-user"></span> infos</a>
+                                    {% endif %}
+                                <a class="dropdown-item" href="#">
+                                    <span class="ti-help-alt"></span> Help</a>
+                                <a class="dropdown-item" href="{% url 'employe:logoutw'%}">
+                                    <span class="ti-power-off"></span> Logout</a>
+                            </div>
+                        </li>
+                    </ul>
             
-		</div>
-		<!-- /Page Content -->
-	</div>
-	<!-- Back to Top -->
-	<a id="back-to-top" href="#" class="back-to-top">
-		<span class="ti-angle-up"></span>
-	</a>
-
-
-
-    <!-- Jquery Library-->
-	<script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
-	<!-- Popper Library-->
-	<script src="{% static 'js/popper.min.js'%}"></script>
-	<!-- Bootstrap Library-->
-	<script src="{% static 'js/bootstrap.min.js'%}"></script>
-	<!-- morris charts -->
-	<script src="{% static 'charts/js/raphael-min.js'%}"></script>
-	<script src="{% static 'charts/js/morris.min.js'%}"></script>
-	<script src="{% static 'js/custom-morris.js'%}"></script>
-
-	<!-- Custom Script-->
-	<script src="{% static 'js/custom.js'%}"></script>
-</body>
+                </nav>
+            </div>
+            <!-- /Top Navigation -->
+            
+            <!-- Menu -->
+            <div class="container menu-nav">
+                <nav class="navbar navbar-expand-lg proclinic-bg text-white">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="ti-menu text-white"></span>
+                    </button>
+            
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'employe:base' %}">Dashboard</a>
+                            </li>
+                            <li class="nav-item ">
+                                
+                                
+								
+                                    
+                                    <a class="nav-link" href="{% url 'employe:client_show' %}">Clients</a>
+                                    
+                            </li>
+                            
+                            <li class="nav-item ">
+                               
+                                
+                                    <a class="nav-link" href="{% url 'employe:all_operation' %}">Operation</a>
+                                    
+                                
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                 aria-expanded="false">Rapports</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'employe:client_report' %}">Rapport sur contact</a>
+                                    <a class="dropdown-item" href="{% url 'employe:operation_report' %}">Rapport sur operation</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- /Menu -->
+            
+            {% block content %}
+            {% endblock %}
+            
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- Back to Top -->
+    <a id="back-to-top" href="#" class="back-to-top">
+        <span class="ti-angle-up"></span>
+    </a>
     
-
+    <!-- Jquery Library-->
+    <script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+    <!-- Popper Library-->
+    <script src="{% static 'js/popper.min.js'%}"></script>
+    <!-- Bootstrap Library-->
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <!-- morris charts -->
+    <script src="{% static 'charts/js/raphael-min.js'%}"></script>
+    <script src="{% static 'charts/js/morris.min.js'%}"></script>
+    <script src="{% static 'js/custom-morris.js'%}"></script>
+    
+    <!-- Custom Script-->
+    <script src="{% static 'js/custom.js'%}"></script>
+</body>
 </html>

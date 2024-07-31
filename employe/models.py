@@ -5,6 +5,9 @@ from django.db import models
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(blank=True, null=True)
+    is_admin = models.BooleanField(default=False)
+
+
 
 
 
@@ -37,3 +40,14 @@ class Operation(models.Model):
 
     def __str__(self):
         return f"{self.client_id} - {self.operation}"
+#info company
+
+class CompanyInfo(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Nom de la Société")
+    responsible_person = models.CharField(max_length=255, verbose_name="Nom Responsable")
+    email = models.EmailField(verbose_name="Email")
+    logo = models.ImageField(upload_to='logos/', blank=True, null=True, verbose_name="Logo")
+    address = models.CharField(max_length=255,verbose_name="Adresse")
+
+    def __str__(self):
+        return self.name

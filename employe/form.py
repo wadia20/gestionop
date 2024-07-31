@@ -47,3 +47,19 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['client_Name', 'Date_Of_Birth', 'Phone', 'Email', 'Gender', 'Address']
+
+
+
+from .models import CompanyInfo
+
+class CompanyInfoForm(forms.ModelForm):
+    class Meta:
+        model = CompanyInfo
+        fields = ['name', 'responsible_person', 'email', 'logo', 'address']
+        labels = {
+            'name': 'Nom de la Société',
+            'responsible_person': 'Nom Responsable',
+            'email': 'Email',
+            'logo': 'Logo',
+            'address': 'Adresse',
+        }

@@ -33,10 +33,11 @@ urlpatterns = [
     path('client_report/', views.client_report, name='client_report'),
     path('operation_report/', views.operation_report, name='operation_report'),
 
+    path('edit-company-info/', views.edit_company_info, name='edit_company_info'),
 
 
 ]
 from django.conf import settings
 from django.conf.urls.static import static
-
-urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

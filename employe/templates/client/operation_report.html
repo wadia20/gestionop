@@ -35,23 +35,31 @@
 
 <!-- Search Form -->
 <div class="container">
-    <form method="POST" action="{% url 'employe:operation_report' %}">
-        {% csrf_token %}
-        <div class="form-row">
-            <div class="form-group col-md-5">
-                <label for="start_date">Date de début</label>
-                <input type="date" class="form-control" id="start_date" name="start_date" required>
-            </div>
-            <div class="form-group col-md-5">
-                <label for="end_date">Date de fin</label>
-                <input type="date" class="form-control" id="end_date" name="end_date" required>
-            </div>
-            <div class="form-group col-md-2 align-self-end">
-                <button type="submit" class="btn btn-primary">Rechercher</button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget-area-2 proclinic-box-shadow">
+                <h3 class="widget-title">Générer le Rapport Operation</h3>
+                <form method="POST" action="{% url 'employe:operation_report' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="start_date">Date de début</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="end_date">Date de fin</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">Générer</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+
 
 <!-- Main Content -->
 <div class="container mt-4">
